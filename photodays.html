@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотодни - Фотограф Светлана Якубашко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Цветовая палитра */
+        :root {
+            --primary-color: #8a7f8d;
+            --primary-dark: #6b5f6a;
+            --primary-light: #f5f3f5;
+            --accent-color: #d4b8c7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f7f9;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --instagram-color: #E4405F;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Шапка */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+        
+        .photographer-name {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-login, .btn-register {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Навигация */
+        .nav-container {
+            background-color: var(--white);
+            padding: 0 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Instagram баннер */
+        .instagram-banner {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .instagram-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .instagram-info p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .btn-instagram {
+            background-color: white;
+            color: #E4405F;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Ближайшие фотодни */
+        .upcoming-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+        
+        .photodays-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .photoday-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .photoday-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photoday-image {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .photoday-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .photoday-card:hover .photoday-image img {
+            transform: scale(1.05);
+        }
+        
+        .photoday-content {
+            padding: 25px;
+        }
+        
+        .photoday-date {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .photoday-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .photoday-description {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .photoday-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .photoday-price {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .btn-book {
+            padding: 10px 25px;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-book:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Галерея фотодней */
+        .gallery-section {
+            margin-bottom: 60px;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background-color: var(--white);
+            color: var(--text-dark);
+            border: 1px solid var(--primary-light);
+            border-radius: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-date {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Как это работает */
+        .process-section {
+            margin-bottom: 60px;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .step-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .step-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Запись на фотодень */
+        .booking-section {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 60px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .booking-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .booking-text {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Модальное окно записи */
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .booking-content {
+            background: var(--white);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: var(--text-light);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .selected-photoday {
+            background-color: var(--primary-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .selected-photoday h4 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .selected-photoday p {
+            font-size: 16px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 184, 199, 0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 8px;
+            border: 2px solid var(--success-color);
+            margin-top: 20px;
+        }
+        
+        .success-message i {
+            font-size: 48px;
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+        
+        .success-message h3 {
+            font-size: 22px;
+            color: var(--success-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Футер */
+        .site-footer {
+            background-color: var(--white);
+            color: var(--text-light);
+            padding: 50px 30px 30px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--primary-light);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .photodays-grid, .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .booking-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header, .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 22px;
+            }
+            
+            .instagram-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .photodays-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .btn-login, .btn-register {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+            
+            .booking-content {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .booking-section {
+                padding: 30px 20px;
+            }
+            
+            .booking-title {
+                font-size: 28px;
+            }
+            
+            .booking-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">
+            <i class="fas fa-camera logo-icon"></i>
+            <div>
+                <div class="site-name">Фотограф Светлана Якубашко</div>
+                <div class="photographer-name">Гродно, профессиональная фотосъёмка</div>
+            </div>
+        </div>
+        
+        <div class="user-actions">
+            <button class="btn-login" onclick="window.location.href='login.html'">Войти</button>
+            <button class="btn-register" onclick="window.location.href='login.html'">Регистрация</button>
+        </div>
+    </header>
+    
+    <!-- Навигационная панель -->
+    <nav class="nav-container">
+        <ul class="nav-tabs">
+            <li class="nav-tab" onclick="window.location.href='index.html'">ГЛАВНАЯ</li>
+            <li class="nav-tab" onclick="window.location.href='portfolio.html'">ПОРТФОЛИО</li>
+            <li class="nav-tab" onclick="window.location.href='services.html'">УСЛУГИ И ЦЕНЫ</li>
+            <li class="nav-tab active">ФОТОДНИ</li>
+            <li class="nav-tab" onclick="window.location.href='faq.html'">FAQ</li>
+            <li class="nav-tab" onclick="window.location.href='contacts.html'">КОНТАКТЫ</li>
+        </ul>
+    </nav>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Заголовок -->
+        <div class="page-header">
+            <h1 class="page-title">Фотодни в Гродно</h1>
+            <p class="page-subtitle">Тематические фотосессии в специально подготовленных локациях. Участвуйте в групповых съёмках по доступным ценам!</p>
+        </div>
+        
+        <!-- Instagram баннер -->
+        <div class="instagram-banner">
+            <div class="instagram-info">
+                <h3>Больше фотодней в нашем Instagram!</h3>
+                <p>Следите за анонсами новых тематических фотосессий и смотрите работы участников</p>
+            </div>
+            <a href="https://www.instagram.com/photoday.grodno/" target="_blank" class="btn-instagram">
+                <i class="fab fa-instagram"></i>
+                @photoday.grodno
+            </a>
+        </div>
+        
+        <!-- Ближайшие фотодни -->
+        <div class="upcoming-section">
+            <h2 class="section-title">Ближайшие фотодни</h2>
+            
+            <div class="photodays-grid">
+                <!-- Фотодень 1 -->
+                <div class="photoday-card">
+                    <div class="photoday-image">
+                        <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Весенняя фотосессия">
+                    </div>
+                    <div class="photoday-content">
+                        <div class="photoday-date">25 мая 2024</div>
+                        <h3 class="photoday-title">"Весеннее пробуждение"</h3>
+                        <p class="photoday-description">Тематическая фотосессия в ботаническом саду. Нежные пастельные тона, цветущие деревья и весеннее настроение.</p>
+                        <div class="photoday-details">
+                            <div class="photoday-price">150 BYN</div>
+                            <button class="btn-book" onclick="openBooking('Весеннее пробуждение', '25 мая 2024', '150')">Записаться</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Фотодень 2 -->
+                <div class="photoday-card">
+                    <div class="photoday-image">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Летняя фотосессия">
+                    </div>
+                    <div class="photoday-content">
+                        <div class="photoday-date">15 июня 2024</div>
+                        <h3 class="photoday-title">"Золотое лето"</h3>
+                        <p class="photoday-description">Летняя фотосессия на закате в поле. Тёплые золотые оттенки, пшеничные поля и романтичная атмосфера.</p>
+                        <div class="photoday-details">
+                            <div class="photoday-price">170 BYN</div>
+                            <button class="btn-book" onclick="openBooking('Золотое лето', '15 июня 2024', '170')">Записаться</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Фотодень 3 -->
+                <div class="photoday-card">
+                    <div class="photoday-image">
+                        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Детская фотосессия">
+                    </div>
+                    <div class="photoday-content">
+                        <div class="photoday-date">8 июня 2024</div>
+                        <h3 class="photoday-title">"Сказочное детство"</h3>
+                        <p class="photoday-description">Детская фотосессия в сказочном лесу. Для детей от 3 до 10 лет. Костюмы, реквизит и волшебная атмосфера.</p>
+                        <div class="photoday-details">
+                            <div class="photoday-price">120 BYN</div>
+                            <button class="btn-book" onclick="openBooking('Сказочное детство', '8 июня 2024', '120')">Записаться</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Галерея фотодней -->
+        <div class="gallery-section">
+            <h2 class="section-title">Галерея прошедших фотодней</h2>
+            
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="spring">Весенние</button>
+                <button class="filter-btn" data-filter="summer">Летние</button>
+                <button class="filter-btn" data-filter="autumn">Осенние</button>
+                <button class="filter-btn" data-filter="winter">Зимние</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Фото 1 -->
+                <div class="gallery-item" data-category="spring">
+                    <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Фотодень в парке">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Весна в парке Жилибера</div>
+                        <div class="gallery-date">Апрель 2024</div>
+                    </div>
+                </div>
+                
+                <!-- Фото 2 -->
+                <div class="gallery-item" data-category="summer">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Летний фотодень">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Летний вечер на Немане</div>
+                        <div class="gallery-date">Июль 2023</div>
+                    </div>
+                </div>
+                
+                <!-- Фото 3 -->
+                <div class="gallery-item" data-category="autumn">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Осенний фотодень">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Золотая осень в парке</div>
+                        <div class="gallery-date">Октябрь 2023</div>
+                    </div>
+                </div>
+                
+                <!-- Фото 4 -->
+                <div class="gallery-item" data-category="winter">
+                    <img src="https://images.unsplash.com/photo-1482517967863-00e15c9b44be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Зимний фотодень">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Зимняя сказка в Старом замке</div>
+                        <div class="gallery-date">Декабрь 2023</div>
+                    </div>
+                </div>
+                
+                <!-- Фото 5 -->
+                <div class="gallery-item" data-category="spring">
+                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Фотодень с цветами">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Цветущая сакура в ботаническом саду</div>
+                        <div class="gallery-date">Май 2023</div>
+                    </div>
+                </div>
+                
+                <!-- Фото 6 -->
+                <div class="gallery-item" data-category="summer">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Детский фотодень">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Детский фотодень "Лето в деревне"</div>
+                        <div class="gallery-date">Август 2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Как это работает -->
+        <div class="process-section">
+            <h2 class="section-title">Как проходит фотодень?</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="step-title">Запись и подготовка</h3>
+                    <p class="step-description">Выбираете подходящую дату и тему, записываетесь онлайн. Получаете рекомендации по подготовке к съемке.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="step-title">Групповая съемка</h3>
+                    <p class="step-description">В назначенное время встречаетесь с группой участников (4-6 человек) в выбранной локации.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="step-title">Профессиональная съемка</h3>
+                    <p class="step-description">Я провожу индивидуальную и групповую съемку для каждого участника, помогаю с позами и эмоциями.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="step-title">Получение фото</h3>
+                    <p class="step-description">Через 7-10 дней вы получаете 30+ обработанных фото в электронном виде в полном разрешении.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Запись на фотодень -->
+        <div class="booking-section">
+            <h2 class="booking-title">Хотите участвовать в фотодне?</h2>
+            <p class="booking-text">Запишитесь на ближайший фотодень или оставьте заявку, чтобы получить уведомление о новых тематических фотосессиях.</p>
+            <button class="btn-primary" onclick="openBooking('Общая заявка на фотодень', 'Дата не выбрана', '0')">Оставить заявку</button>
+        </div>
+    </main>
+    
+    <!-- Модальное окно записи -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-content">
+            <button class="close-modal" onclick="closeBooking()">&times;</button>
+            
+            <div id="bookingForm">
+                <h2 class="modal-title">Запись на фотодень</h2>
+                
+                <div class="selected-photoday" id="selectedPhotodayInfo">
+                    <h4 id="photodayName"></h4>
+                    <p id="photodayDetails"></p>
+                </div>
+                
+                <form id="bookingFormData">
+                    <div class="form-group">
+                        <label class="form-label" for="clientName">Ваше имя *</label>
+                        <input type="text" id="clientName" class="form-input" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="clientPhone">Телефон *</label>
+                            <input type="tel" id="clientPhone" class="form-input" placeholder="+375 (XX) XXX-XX-XX" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="clientEmail">Email</label>
+                            <input type="email" id="clientEmail" class="form-input" placeholder="example@gmail.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="participants">Количество участников *</label>
+                        <select id="participants" class="form-select" required>
+                            <option value="">Выберите количество</option>
+                            <option value="1">1 человек</option>
+                            <option value="2">2 человека</option>
+                            <option value="3">3 человека</option>
+                            <option value="4">4+ человека</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="photodayTheme">Тема фотодня</label>
+                        <select id="photodayTheme" class="form-select">
+                            <option value="">Выберите тему (если не определились)</option>
+                            <option value="spring">Весеннее пробуждение (25 мая)</option>
+                            <option value="summer">Золотое лето (15 июня)</option>
+                            <option value="children">Сказочное детство (8 июня)</option>
+                            <option value="other">Другая тема</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="comments">Комментарий или вопросы</label>
+                        <textarea id="comments" class="form-input" placeholder="Особые пожелания, вопросы по организации, пожелания по времени и т.д." rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="agreeRules" required style="width: 18px; height: 18px;">
+                            <span style="font-size: 14px; color: var(--text-dark);">Я согласен с <a href="#" style="color: var(--primary-color);">правилами участия</a> в фотодне *</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Отправить заявку</button>
+                </form>
+            </div>
+            
+            <div id="bookingSuccess" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Заявка отправлена успешно!</h3>
+                <p>Я свяжусь с вами в течение 24 часов для подтверждения записи и уточнения деталей.</p>
+                <p>Номер вашей заявки: <strong id="bookingNumber"></strong></p>
+                <button class="btn-submit" onclick="closeBooking()" style="margin-top: 20px; width: auto; padding: 10px 30px;">Закрыть</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +375 (XX) XXX-XX-XX</p>
+                <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@svetlana-photo.by</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> г. Гродно, ул. Советская, 15</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Быстрые ссылки</h4>
+                <a href="index.html">Главная</a>
+                <a href="portfolio.html">Портфолио</a>
+                <a href="services.html">Услуги и цены</a>
+                <a href="photodays.html">Фотодни</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Фотодни в Instagram</h4>
+                <a href="https://www.instagram.com/photoday.grodno/" target="_blank"><i class="fab fa-instagram" style="margin-right: 10px;"></i> @photoday.grodno</a>
+                <p>Следите за анонсами новых тематических фотосессий</p>
+                <p>Смотрите работы участников</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Социальные сети</h4>
+                <a href="https://www.instagram.com/photoday.grodno/" target="_blank"><i class="fab fa-instagram" style="margin-right: 10px;"></i> Фотодни Гродно</a>
+                <a href="#" target="_blank"><i class="fab fa-telegram" style="margin-right: 10px;"></i> Telegram канал</a>
+                <a href="#" target="_blank"><i class="fab fa-vk" style="margin-right: 10px;"></i> ВКонтакте</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Фотограф Светлана Якубашко. Фотодни в Гродно. Все права защищены.
+        </div>
+    </footer>
+    
+    <script>
+        // Обработка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const page = this.textContent.trim();
+                    
+                    switch(page) {
+                        case 'ГЛАВНАЯ':
+                            window.location.href = 'index.html';
+                            break;
+                        case 'ПОРТФОЛИО':
+                            window.location.href = 'portfolio.html';
+                            break;
+                        case 'УСЛУГИ И ЦЕНЫ':
+                            window.location.href = 'services.html';
+                            break;
+                        case 'ФОТОДНИ':
+                            // Уже на странице фотодней
+                            break;
+                        case 'FAQ':
+                            window.location.href = 'faq.html';
+                            break;
+                        case 'КОНТАКТЫ':
+                            window.location.href = 'contacts.html';
+                            break;
+                    }
+                });
+            });
+            
+            // Фильтрация галереи
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Удаляем класс active у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем класс active текущей кнопке
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Показываем/скрываем элементы галереи
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        
+        // Открытие модального окна записи
+        let currentPhotodayName = '';
+        let currentPhotodayDate = '';
+        let currentPhotodayPrice = '';
+        
+        function openBooking(photodayName, photodayDate, photodayPrice) {
+            currentPhotodayName = photodayName;
+            currentPhotodayDate = photodayDate;
+            currentPhotodayPrice = photodayPrice;
+            
+            document.getElementById('photodayName').textContent = photodayName;
+            
+            let details = '';
+            if (photodayDate !== 'Дата не выбрана') {
+                details += 'Дата: ' + photodayDate + ' | ';
+            }
+            
+            if (photodayPrice !== '0') {
+                details += 'Стоимость: ' + photodayPrice + ' BYN';
+            } else {
+                details += 'Стоимость: уточняется';
+            }
+            
+            document.getElementById('photodayDetails').textContent = details;
+            
+            // Установить выбранную тему в форме
+            const themeSelect = document.getElementById('photodayTheme');
+            if (photodayName === 'Весеннее пробуждение') {
+                themeSelect.value = 'spring';
+            } else if (photodayName === 'Золотое лето') {
+                themeSelect.value = 'summer';
+            } else if (photodayName === 'Сказочное детство') {
+                themeSelect.value = 'children';
+            } else {
+                themeSelect.value = '';
+            }
+            
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.getElementById('bookingForm').style.display = 'block';
+            document.getElementById('bookingSuccess').style.display = 'none';
+            
+            // Сброс формы
+            document.getElementById('bookingFormData').reset();
+        }
+        
+        // Закрытие модального окна
+        function closeBooking() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+        
+        // Обработка формы записи
+        document.getElementById('bookingFormData').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Валидация телефона (белорусский формат)
+            const phone = document.getElementById('clientPhone').value;
+            const phoneRegex = /^(\+375)[\s\-]?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+            
+            if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                alert('Пожалуйста, введите корректный белорусский номер телефона в формате +375 (XX) XXX-XX-XX');
+                return;
+            }
+            
+            // Проверка согласия с правилами
+            if (!document.getElementById('agreeRules').checked) {
+                alert('Пожалуйста, подтвердите согласие с правилами участия в фотодне');
+                return;
+            }
+            
+            // Генерация номера заявки
+            const bookingNumber = 'PH' + Date.now().toString().slice(-6);
+            document.getElementById('bookingNumber').textContent = bookingNumber;
+            
+            // Показать сообщение об успехе
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('bookingSuccess').style.display = 'block';
+            
+            // В реальном приложении здесь был бы запрос на сервер
+            console.log('Заявка на фотодень отправлена:', {
+                photoday: currentPhotodayName,
+                date: currentPhotodayDate,
+                price: currentPhotodayPrice,
+                name: document.getElementById('clientName').value,
+                phone: phone,
+                email: document.getElementById('clientEmail').value,
+                participants: document.getElementById('participants').value,
+                theme: document.getElementById('photodayTheme').value,
+                bookingNumber: bookingNumber
+            });
+            
+            // Автоматически закрыть через 5 секунд
+            setTimeout(() => {
+                closeBooking();
+            }, 5000);
+        });
+        
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeBooking();
+            }
+        };
+        
+        // Закрытие модального окна по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeBooking();
+            }
+        });
+    </script>
+</body>
+</html>

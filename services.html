@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги и цены - Фотограф Светлана Якубашко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Цветовая палитра */
+        :root {
+            --primary-color: #8a7f8d;
+            --primary-dark: #6b5f6a;
+            --primary-light: #f5f3f5;
+            --accent-color: #d4b8c7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f7f9;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Шапка */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+        
+        .photographer-name {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-login, .btn-register {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Навигация */
+        .nav-container {
+            background-color: var(--white);
+            padding: 0 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Таблица услуг */
+        .services-table {
+            width: 100%;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .service-category {
+            background-color: var(--primary-light);
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .service-row {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr;
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--primary-light);
+            align-items: center;
+        }
+        
+        .service-row:last-child {
+            border-bottom: none;
+        }
+        
+        .service-row:hover {
+            background-color: rgba(245, 243, 245, 0.3);
+        }
+        
+        .service-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .service-description {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+        
+        .service-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .service-action {
+            text-align: center;
+        }
+        
+        .btn-book {
+            padding: 10px 25px;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-book:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Форма записи */
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .booking-content {
+            background: var(--white);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: var(--text-light);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .selected-service {
+            background-color: var(--primary-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .selected-service h4 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .selected-service p {
+            font-size: 16px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 184, 199, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 8px;
+            border: 2px solid var(--success-color);
+            margin-top: 20px;
+        }
+        
+        .success-message i {
+            font-size: 48px;
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+        
+        .success-message h3 {
+            font-size: 22px;
+            color: var(--success-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Особенности */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            border-top: 4px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* FAQ */
+        .faq-section {
+            margin: 50px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: var(--primary-light);
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Футер */
+        .site-footer {
+            background-color: var(--white);
+            color: var(--text-light);
+            padding: 50px 30px 30px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--primary-light);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .service-row {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header, .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 22px;
+            }
+            
+            .service-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .service-description {
+                margin-bottom: 10px;
+            }
+            
+            .booking-content {
+                padding: 30px 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .btn-login, .btn-register {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">
+            <i class="fas fa-camera logo-icon"></i>
+            <div>
+                <div class="site-name">Фотограф Светлана Якубашко</div>
+                <div class="photographer-name">Профессиональная фотосъёмка</div>
+            </div>
+        </div>
+        
+        <div class="user-actions">
+            <button class="btn-login" onclick="window.location.href='login.html'">Войти</button>
+            <button class="btn-register" onclick="window.location.href='login.html'">Регистрация</button>
+        </div>
+    </header>
+    
+    <!-- Навигационная панель -->
+    <nav class="nav-container">
+        <ul class="nav-tabs">
+            <li class="nav-tab" onclick="window.location.href='index.html'">ГЛАВНАЯ</li>
+            <li class="nav-tab" onclick="window.location.href='portfolio.html'">ПОРТФОЛИО</li>
+            <li class="nav-tab active">УСЛУГИ И ЦЕНЫ</li>
+            <li class="nav-tab" onclick="window.location.href='photodays.html'">ФОТОДНИ</li>
+            <li class="nav-tab" onclick="window.location.href='faq.html'">FAQ</li>
+            <li class="nav-tab" onclick="window.location.href='contacts.html'">КОНТАКТЫ</li>
+        </ul>
+    </nav>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Заголовок -->
+        <div class="page-header">
+            <h1 class="page-title">Услуги и цены</h1>
+            <p class="page-subtitle">Выберите подходящую услугу и запишитесь на фотосессию онлайн.</p>
+        </div>
+        
+        <!-- Особенности -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-camera-retro"></i>
+                </div>
+                <h3 class="feature-title">Профессиональное оборудование</h3>
+                <p class="feature-description">Работаю на профессиональной технике Canon, с полным набором светового оборудования</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="feature-title">Гарантия качества</h3>
+                <p class="feature-description">Более 7 лет опыта, гарантирую высокое качество фотографий и обработки</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">Своевременная сдача</h3>
+                <p class="feature-description">Сдаю обработанные фотографии в оговоренные сроки, обычно 7-14 дней после съемки</p>
+            </div>
+        </div>
+        
+        <!-- Свадебная фотография -->
+        <div class="services-table">
+            <div class="service-category">Свадебная фотография</div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Стандартный пакет</div>
+                    <div class="service-description"> Прогулка, банкет до 23:00, 100+ обработанных фото</div>
+                </div>
+                <div class="service-price">от Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Стандартный свадебный пакет', '1200')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Расширенный пакет</div>
+                    <div class="service-description">Полный день с подготовки до торта, 500+ фото, печать 20 фото 15×20</div>
+                </div>
+                <div class="service-price">от Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Расширенный свадебный пакет', '1800')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Love Story</div>
+                    <div class="service-description">Романтическая фотосессия для пары, 2-3 часа, 100+ фото</div>
+                </div>
+                <div class="service-price">от Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Love Story фотосессия', '400')">Записаться</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Семейные фотосессии -->
+        <div class="services-table">
+            <div class="service-category">Семейные фотосессии</div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Семейная фотосессия в студии</div>
+                    <div class="service-description">До 4 человек, 1.5 часа съемки, 50+ обработанных фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Семейная фотосессия в студии', '350')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Фотосессия на природе</div>
+                    <div class="service-description">В парке или за городом, 2 часа, 60+ фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Фотосессия на природе', '400')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Детская фотосессия</div>
+                    <div class="service-description">Для детей до 10 лет, 1 час, 30+ фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Детская фотосессия', '250')">Записаться</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Портретная съемка -->
+        <div class="services-table">
+            <div class="service-category">Портретная съемка</div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Индивидуальный портрет</div>
+                    <div class="service-description">Студийная съемка, 1 час, 20+ обработанных фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Индивидуальный портрет', '200')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Деловой портрет</div>
+                    <div class="service-description">Для LinkedIn, сайта компании, 30 минут, 10 фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Деловой портрет', '150')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Бьюти-портрет</div>
+                    <div class="service-description">С профессиональным визажистом, 2 часа, 30+ фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Бьюти-портрет', '450')">Записаться</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Мероприятия -->
+        <div class="services-table">
+            <div class="service-category">Фотосъемка мероприятий</div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Корпоратив</div>
+                    <div class="service-description">До 4 часов съемки, 150+ обработанных фото</div>
+                </div>
+                <div class="service-price">Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Корпоративное мероприятие', '500')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">День рождения</div>
+                    <div class="service-description">До 3 часов, 100+ фото, срочная обработка +20%</div>
+                </div>
+                <div class="service-price">от Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('День рождения', '400')">Записаться</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Конференция/Семинар</div>
+                    <div class="service-description">Репортажная съемка, 100+ фото, почасовая оплата</div>
+                </div>
+                <div class="service-price">Х BYN./час</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Конференция/Семинар', '100')">Записаться</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Дополнительные услуги -->
+        <div class="services-table">
+            <div class="service-category">Дополнительные услуги</div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Обработка фото (ретушь)</div>
+                    <div class="service-description">Профессиональная ретушь кожи, коррекция цвета</div>
+                </div>
+                <div class="service-price">Х BYN./фото</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Обработка фото', '5')">Заказать</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Печать фото</div>
+                    <div class="service-description">Качественная печать на матовой/глянцевой бумаге</div>
+                </div>
+                <div class="service-price">от Х BYN.</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Печать фото', '3')">Заказать</button>
+                </div>
+            </div>
+            
+            <div class="service-row">
+                <div class="service-info">
+                    <div class="service-name">Срочная обработка</div>
+                    <div class="service-description">Сдача фото в течение 3 дней после съемки</div>
+                </div>
+                <div class="service-price">+30% к стоимости</div>
+                <div class="service-action">
+                    <button class="btn-book" onclick="openBooking('Срочная обработка', '0')">Узнать</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2 style="font-size: 28px; margin-bottom: 30px; color: var(--text-dark);">Частые вопросы</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Как происходит оплата?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Для бронирования даты требуется предоплата 30% от стоимости услуги. Оставшаяся сумма оплачивается в день съемки. Принимаю наличные, перевод на карту, ЕРИП.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли перенести съемку?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Да, съемку можно перенести не менее чем за 48 часов до начала. Предоплата сохраняется. При отмене менее чем за 48 часов предоплата не возвращается.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Сколько времени занимает обработка фото?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Стандартный срок обработки - 7-14 дней в зависимости от объема работы. При заказе срочной обработки фото будут готовы в течение 3 дней.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Что входит в стоимость фотосессии?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    В стоимость входит время фотографа, работа с техникой, базовая обработка всех удачных кадров и передача фото в электронном виде. Печать, дополнительные услуги визажиста/стилиста оплачиваются отдельно.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Призыв к действию -->
+        <div style="text-align: center; margin: 60px 0;">
+            <h2 style="font-size: 32px; margin-bottom: 20px; color: var(--text-dark); font-weight: 300;">Остались вопросы?</h2>
+            <p style="color: var(--text-light); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Свяжитесь со мной для уточнения деталей или индивидуального расчета стоимости</p>
+            <button class="btn-submit" style="width: auto; padding: 15px 40px;" onclick="window.location.href='contacts.html'">Связаться</button>
+        </div>
+    </main>
+    
+    <!-- Модальное окно записи -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-content">
+            <button class="close-modal" onclick="closeBooking()">&times;</button>
+            
+            <div id="bookingForm">
+                <h2 class="modal-title">Запись на фотосессию</h2>
+                
+                <div class="selected-service" id="selectedServiceInfo">
+                    <h4 id="serviceName"></h4>
+                    <p id="servicePrice"></p>
+                </div>
+                
+                <form id="bookingFormData">
+                    <div class="form-group">
+                        <label class="form-label" for="clientName">Ваше имя *</label>
+                        <input type="text" id="clientName" class="form-input" placeholder="Имя Фамилия" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="clientPhone">Телефон *</label>
+                            <input type="tel" id="clientPhone" class="form-input" placeholder="+375 (XX) XXX-XX-XX" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="clientEmail">Email</label>
+                            <input type="email" id="clientEmail" class="form-input" placeholder="example@gmail.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="serviceType">Тип услуги *</label>
+                        <select id="serviceType" class="form-select" required>
+                            <option value="">Выберите тип услуги</option>
+                            <option value="wedding">Свадебная фотография</option>
+                            <option value="family">Семейная фотосессия</option>
+                            <option value="portrait">Портретная съемка</option>
+                            <option value="event">Мероприятие</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="bookingDate">Желаемая дата *</label>
+                            <input type="date" id="bookingDate" class="form-input" required min="">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="bookingTime">Предпочтительное время</label>
+                            <select id="bookingTime" class="form-select">
+                                <option value="">Любое время</option>
+                                <option value="morning">Утро (9:00-12:00)</option>
+                                <option value="day">День (12:00-17:00)</option>
+                                <option value="evening">Вечер (17:00-21:00)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <p> </p><div class="form-group">
+                        <label class="form-label" for="location">Место съемки</label>
+                        <select id="location" class="form-select">
+                            <option value="">Выберите место</option>
+                            <option value="studio">Студия (Гродно, ул. Советская 15)</option>
+                            <option value="outdoor">На улице/в парке</option>
+                            <option value="client">У клиента (выезд)</option>
+                            <option value="other">Другое (уточнить в комментарии)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="comments">Комментарий или пожелания</label>
+                        <textarea id="comments" class="form-textarea" placeholder="Дополнительная информация, особые пожелания, количество участников и т.д."></textarea>
+                    </div></form> </p>
+                    
+                    <button type="submit" class="btn-submit">Отправить заявку</button>
+                </form>
+            </div>
+            
+            <div id="bookingSuccess" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Заявка отправлена успешно!</h3>
+                <p>Я свяжусь с вами в течение 24 часов для подтверждения записи.</p>
+                <p>Номер вашей заявки: <strong id="bookingNumber"></strong></p>
+                <button class="btn-submit" onclick="closeBooking()" style="margin-top: 20px; width: auto; padding: 10px 30px;">Закрыть</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +375 (XX) XXX-XX-XX</p>
+                <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@svetlana-photo.by</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> г. Гродно, ул. Советская, 15</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Быстрые ссылки</h4>
+                <a href="index.html">Главная</a>
+                <a href="portfolio.html">Портфолио</a>
+                <a href="services.html">Услуги и цены</a>
+                <a href="photodays.html">Фотодни</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Часы работы</h4>
+                <p>Пн-Пт: 9:00 - 20:00</p>
+                <p>Сб: 10:00 - 18:00</p>
+                <p>Вс: 11:00 - 16:00</p>
+                <p>По предварительной записи</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Социальные сети</h4>
+                <a href="https://instagram.com/svetlana_photographer" target="_blank"><i class="fab fa-instagram" style="margin-right: 10px;"></i> Instagram</a>
+                <a href="#" target="_blank"><i class="fab fa-vk" style="margin-right: 10px;"></i> ВКонтакте</a>
+                <a href="#" target="_blank"><i class="fab fa-telegram" style="margin-right: 10px;"></i> Telegram</a>
+                <a href="#" target="_blank"><i class="fab fa-facebook" style="margin-right: 10px;"></i> Facebook</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Фотограф Светлана Якубашко. Гродно. Все права защищены.
+        </div>
+    </footer>
+    
+    <script>
+        // Обработка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const page = this.textContent.trim();
+                    
+                    switch(page) {
+                        case 'ГЛАВНАЯ':
+                            window.location.href = 'index.html';
+                            break;
+                        case 'ПОРТФОЛИО':
+                            window.location.href = 'portfolio.html';
+                            break;
+                        case 'УСЛУГИ И ЦЕНЫ':
+                            // Уже на странице услуг
+                            break;
+                        case 'ФОТОДНИ':
+                            window.location.href = 'photodays.html';
+                            break;
+                        case 'FAQ':
+                            window.location.href = 'faq.html';
+                            break;
+                        case 'КОНТАКТЫ':
+                            window.location.href = 'contacts.html';
+                            break;
+                    }
+                });
+            });
+            
+            // Установка минимальной даты для записи (завтра)
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
+            document.getElementById('bookingDate').min = minDate;
+            
+            // FAQ аккордеон
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active');
+                    
+                    // Закрыть другие открытые вопросы
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== this && otherQuestion.parentElement.classList.contains('active')) {
+                            otherQuestion.parentElement.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+        
+        // Открытие модального окна записи
+        let currentServiceName = '';
+        let currentServicePrice = '';
+        
+        function openBooking(serviceName, servicePrice) {
+            currentServiceName = serviceName;
+            currentServicePrice = servicePrice;
+            
+            document.getElementById('serviceName').textContent = serviceName;
+            
+            if (servicePrice === '0') {
+                document.getElementById('servicePrice').textContent = 'Цена обсуждается индивидуально';
+            } else if (servicePrice.includes('/')) {
+                document.getElementById('servicePrice').textContent = 'от ' + servicePrice + ' BYN';
+            } else {
+                document.getElementById('servicePrice').textContent = 'от ' + servicePrice + ' BYN';
+            }
+            
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.getElementById('bookingForm').style.display = 'block';
+            document.getElementById('bookingSuccess').style.display = 'none';
+            
+            // Сброс формы
+            document.getElementById('bookingFormData').reset();
+        }
+        
+        // Закрытие модального окна
+        function closeBooking() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+        
+        // Обработка формы записи
+        document.getElementById('bookingFormData').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Валидация телефона (белорусский формат)
+            const phone = document.getElementById('clientPhone').value;
+            const phoneRegex = /^(\+375)[\s\-]?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+            
+            if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                alert('Пожалуйста, введите корректный белорусский номер телефона в формате +375 (XX) XXX-XX-XX');
+                return;
+            }
+            
+            // Генерация номера заявки
+            const bookingNumber = 'BK' + Date.now().toString().slice(-6);
+            document.getElementById('bookingNumber').textContent = bookingNumber;
+            
+            // Показать сообщение об успехе
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('bookingSuccess').style.display = 'block';
+            
+            // В реальном приложении здесь был бы запрос на сервер
+            console.log('Заявка отправлена:', {
+                service: currentServiceName,
+                price: currentServicePrice,
+                name: document.getElementById('clientName').value,
+                phone: phone,
+                email: document.getElementById('clientEmail').value,
+                date: document.getElementById('bookingDate').value,
+                bookingNumber: bookingNumber
+            });
+            
+            // Автоматически закрыть через 5 секунд
+            setTimeout(() => {
+                closeBooking();
+            }, 5000);
+        });
+        
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeBooking();
+            }
+        };
+        
+        // Закрытие модального окна по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeBooking();
+            }
+        });
+    </script>
+</body>
+</html>

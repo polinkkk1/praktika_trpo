@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Фотограф Светлана Якубашко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Цветовая палитра */
+        :root {
+            --primary-color: #8a7f8d;
+            --primary-dark: #6b5f6a;
+            --primary-light: #f5f3f5;
+            --accent-color: #d4b8c7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f7f9;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Шапка */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+        
+        .photographer-name {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-login, .btn-register {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Навигация */
+        .nav-container {
+            background-color: var(--white);
+            padding: 0 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Контакты и форма */
+        .contacts-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .contacts-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Информация о контактах */
+        .contact-info {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 30px var(--shadow);
+        }
+        
+        .contact-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-icon {
+            color: var(--accent-color);
+            font-size: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 22px;
+            margin-right: 15px;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-label {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        
+        .contact-description {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            font-size: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Карта */
+        .map-container {
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            background-color: var(--primary-light);
+            position: relative;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .map-placeholder i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Форма обратной связи */
+        .contact-form-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 30px var(--shadow);
+        }
+        
+        .form-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-label .required {
+            color: var(--error-color);
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 184, 199, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 8px;
+            border: 2px solid var(--success-color);
+            margin-top: 20px;
+        }
+        
+        .success-message i {
+            font-size: 48px;
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+        
+        .success-message h3 {
+            font-size: 22px;
+            color: var(--success-color);
+            margin-bottom: 10px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-submit:disabled {
+            background-color: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Часто задаваемые вопросы */
+        .faq-preview {
+            margin: 60px 0;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .faq-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+        
+        .faq-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .faq-card h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .faq-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .faq-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .faq-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Футер */
+        .site-footer {
+            background-color: var(--white);
+            color: var(--text-light);
+            padding: 50px 30px 30px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--primary-light);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .contacts-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header, .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 22px;
+            }
+            
+            .contact-info, .contact-form-container {
+                padding: 30px 25px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .btn-login, .btn-register {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">
+            <i class="fas fa-camera logo-icon"></i>
+            <div>
+                <div class="site-name">Фотограф Светлана Якубашко</div>
+                <div class="photographer-name">Гродно, профессиональная фотосъёмка</div>
+            </div>
+        </div>
+        
+        <div class="user-actions">
+            <button class="btn-login" onclick="window.location.href='login.html'">Войти</button>
+            <button class="btn-register" onclick="window.location.href='login.html'">Регистрация</button>
+        </div>
+    </header>
+    
+    <!-- Навигационная панель -->
+    <nav class="nav-container">
+        <ul class="nav-tabs">
+            <li class="nav-tab" onclick="window.location.href='index.html'">ГЛАВНАЯ</li>
+            <li class="nav-tab" onclick="window.location.href='portfolio.html'">ПОРТФОЛИО</li>
+            <li class="nav-tab" onclick="window.location.href='services.html'">УСЛУГИ И ЦЕНЫ</li>
+            <li class="nav-tab" onclick="window.location.href='photodays.html'">ФОТОДНИ</li>
+            <li class="nav-tab" onclick="window.location.href='faq.html'">FAQ</li>
+            <li class="nav-tab active">КОНТАКТЫ</li>
+        </ul>
+    </nav>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Заголовок -->
+        <div class="page-header">
+            <h1 class="page-title">Контакты</h1>
+            <p class="page-subtitle">Свяжитесь со мной любым удобным способом. Я всегда рада ответить на ваши вопросы и обсудить детали фотосессии!</p>
+        </div>
+        
+        <!-- Контакты и форма -->
+        <div class="contacts-wrapper">
+            <!-- Информация о контактах -->
+            <div class="contact-info">
+                <!-- Контактная информация -->
+                <div class="contact-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-address-card section-icon"></i>
+                        Контактная информация
+                    </h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Телефон для связи</div>
+                            <div class="contact-value">+375 (29) 123-45-67</div>
+                            <div class="contact-description">Звонки принимаются с 9:00 до 20:00 по будням</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Электронная почта</div>
+                            <div class="contact-value">svetlana@photo-grodno.by</div>
+                            <div class="contact-description">Отвечаю в течение 24 часов в рабочие дни</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Адрес студии</div>
+                            <div class="contact-value">г. Гродно, ул. Советская, 15, офис 304</div>
+                            <div class="contact-description">Студия находится в центре города, рядом с пешеходной зоной</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Часы работы -->
+                <div class="contact-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-clock section-icon"></i>
+                        Часы работы
+                    </h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Рабочие дни</div>
+                            <div class="contact-value">Понедельник - Пятница</div>
+                            <div class="contact-description">9:00 - 20:00 (консультации и встречи)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-weekend"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Выходные дни</div>
+                            <div class="contact-value">Суббота - Воскресенье</div>
+                            <div class="contact-description">Съемки по предварительной записи, консультации ограничены</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Съемки</div>
+                            <div class="contact-value">Ежедневно по записи</div>
+                            <div class="contact-description">Съемки проводятся в удобное для вас время по предварительной договоренности</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Социальные сети -->
+                <div class="contact-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-hashtag section-icon"></i>
+                        Социальные сети
+                    </h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Instagram</div>
+                            <div class="contact-value">@svetlana_photo_grodno</div>
+                            <div class="contact-description">Следите за новыми работами, акциями и анонсами фотодней</div>
+                            <div class="social-links">
+                                <a href="https://instagram.com/svetlana_photo_grodno" target="_blank" class="social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">Telegram</div>
+                            <div class="contact-value">@svetlana_photo</div>
+                            <div class="contact-description">Быстрая связь, уведомления о свободных датах</div>
+                            <div class="social-links">
+                                <a href="https://t.me/svetlana_photo" target="_blank" class="social-link">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-vk"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-label">ВКонтакте</div>
+                            <div class="contact-value">Светлана Якубашко Фотограф</div>
+                            <div class="contact-description">Полное портфолио и отзывы клиентов</div>
+                            <div class="social-links">
+                                <a href="https://vk.com/svetlana_photo_grodno" target="_blank" class="social-link">
+                                    <i class="fab fa-vk"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карта -->
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>г. Гродно, ул. Советская, 15</h3>
+                        <p>Студия находится в центре города</p>
+                        <p style="font-size: 12px; margin-top: 10px;">(Для интеграции реальной карты добавьте API Яндекс.Карт или Google Maps)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Форма обратной связи -->
+            <div class="contact-form-container">
+                <h2 class="form-title">Напишите мне</h2>
+                
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="contactName">Ваше имя <span class="required">*</span></label>
+                            <input type="text" id="contactName" class="form-input" placeholder="Иван Иванов" required>
+                            <div id="nameError" class="error-message">Пожалуйста, введите ваше имя</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contactPhone">Телефон <span class="required">*</span></label>
+                            <input type="tel" id="contactPhone" class="form-input" placeholder="+375 (XX) XXX-XX-XX" required>
+                            <div id="phoneError" class="error-message">Введите корректный номер телефона</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" class="form-input" placeholder="example@gmail.com">
+                        <div id="emailError" class="error-message">Введите корректный email</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contactType">Тема сообщения</label>
+                        <select id="contactType" class="form-select">
+                            <option value="">Выберите тему</option>
+                            <option value="consultation">Консультация по фотосессии</option>
+                            <option value="booking">Запись на съемку</option>
+                            <option value="photoday">Участие в фотодне</option>
+                            <option value="price">Уточнение по ценам</option>
+                            <option value="other">Другой вопрос</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="contactMessage">Сообщение <span class="required">*</span></label>
+                        <textarea id="contactMessage" class="form-textarea" placeholder="Опишите ваш вопрос или пожелания..." required></textarea>
+                        <div id="messageError" class="error-message">Пожалуйста, напишите ваше сообщение</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="agreePolicy" required style="margin-top: 3px; width: 18px; height: 18px;">
+                            <span style="font-size: 14px; color: var(--text-dark); line-height: 1.4;">
+                                Я согласен на обработку персональных данных в соответствии с 
+                                <a href="#" style="color: var(--primary-color);">политикой конфиденциальности</a> <span class="required">*</span>
+                            </span>
+                        </label>
+                        <div id="policyError" class="error-message">Необходимо согласие с политикой конфиденциальности</div>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit" id="submitButton">
+                        <span id="buttonText">Отправить сообщение</span>
+                        <span id="buttonLoading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Отправка...
+                        </span>
+                    </button>
+                </form>
+                
+                <div id="contactSuccess" class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Сообщение отправлено!</h3>
+                    <p>Спасибо за ваше сообщение. Я свяжусь с вами в ближайшее время.</p>
+                    <p>Обычно отвечаю в течение 24 часов в рабочие дни.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Часто задаваемые вопросы -->
+        <div class="faq-preview">
+            <h2 style="font-size: 32px; font-weight: 300; color: var(--text-dark); margin-bottom: 20px; text-align: center;">
+                Частые вопросы
+            </h2>
+            <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 40px;">
+                Возможно, ответ на ваш вопрос уже есть в нашем разделе FAQ
+            </p>
+            
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h4>Как долго ждать ответа на сообщение?</h4>
+                    <p>Я стараюсь отвечать на все сообщения в течение 24 часов в рабочие дни. В выходные время ответа может быть дольше.</p>
+                    <a href="faq.html" class="faq-link">Все вопросы о связи <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="faq-card">
+                    <h4>Как записаться на фотосессию?</h4>
+                    <p>Вы можете записаться через форму на этой странице, по телефону или через социальные сети. Для бронирования даты требуется предоплата.</p>
+                    <a href="services.html" class="faq-link">Услуги и цены <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="faq-card">
+                    <h4>Где находится студия?</h4>
+                    <p>Студия расположена в центре Гродно по адресу ул. Советская, 15. Есть удобная парковка рядом и хорошая транспортная доступность.</p>
+                    <a href="#map" class="faq-link">Смотреть на карте <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="faq.html" class="btn-submit" style="width: auto; padding: 15px 40px; display: inline-block; text-decoration: none;">
+                    Смотреть все вопросы
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Контактная информация</h4>
+                <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +375 (29) 123-45-67</p>
+                <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> svetlana@photo-grodno.by</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> г. Гродно, ул. Советская, 15</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Быстрые ссылки</h4>
+                <a href="index.html">Главная</a>
+                <a href="portfolio.html">Портфолио</a>
+                <a href="services.html">Услуги и цены</a>
+                <a href="photodays.html">Фотодни</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Часы работы</h4>
+                <p>Пн-Пт: 9:00 - 20:00</p>
+                <p>Сб-Вс: по записи</p>
+                <p>Консультации: ежедневно</p>
+                <p>Съемки: по предварительной записи</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Документы</h4>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Договор оказания услуг</a>
+                <a href="#">Правила участия в фотоднях</a>
+                <a href="#">Реквизиты</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Фотограф Светлана Якубашко. Гродно. Все права защищены.
+        </div>
+    </footer>
+    
+    <script>
+        // Обработка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const page = this.textContent.trim();
+                    
+                    switch(page) {
+                        case 'ГЛАВНАЯ':
+                            window.location.href = 'index.html';
+                            break;
+                        case 'ПОРТФОЛИО':
+                            window.location.href = 'portfolio.html';
+                            break;
+                        case 'УСЛУГИ И ЦЕНЫ':
+                            window.location.href = 'services.html';
+                            break;
+                        case 'ФОТОДНИ':
+                            window.location.href = 'photodays.html';
+                            break;
+                        case 'FAQ':
+                            window.location.href = 'faq.html';
+                            break;
+                        case 'КОНТАКТЫ':
+                            // Уже на странице контактов
+                            break;
+                    }
+                });
+            });
+            
+            // Форматирование номера телефона
+            const phoneInput = document.getElementById('contactPhone');
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.startsWith('375')) {
+                    value = '+' + value;
+                } else if (value.startsWith('80')) {
+                    value = '+375' + value.substring(2);
+                } else if (value.startsWith('0')) {
+                    value = '+375' + value.substring(1);
+                }
+                
+                // Форматирование: +375 (XX) XXX-XX-XX
+                if (value.length > 4) {
+                    value = value.substring(0, 4) + ' (' + value.substring(4);
+                }
+                if (value.length > 8) {
+                    value = value.substring(0, 8) + ') ' + value.substring(8);
+                }
+                if (value.length > 13) {
+                    value = value.substring(0, 13) + '-' + value.substring(13);
+                }
+                if (value.length > 16) {
+                    value = value.substring(0, 16) + '-' + value.substring(16);
+                }
+                
+                e.target.value = value.substring(0, 18);
+            });
+        });
+        
+        // Обработка формы обратной связи
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Скрыть все предыдущие ошибки
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            // Получить значения полей
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+            const agreePolicy = document.getElementById('agreePolicy').checked;
+            
+            let isValid = true;
+            
+            // Валидация имени
+            if (!name) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Валидация телефона (белорусский формат)
+            const phoneRegex = /^(\+375)[\s\-]?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+            if (!phone || !phoneRegex.test(phone.replace(/\s/g, ''))) {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Валидация email (если указан)
+            if (email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+            }
+            
+            // Валидация сообщения
+            if (!message) {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Проверка согласия с политикой
+            if (!agreePolicy) {
+                document.getElementById('policyError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // Показать индикатор загрузки
+            const submitButton = document.getElementById('submitButton');
+            const buttonText = document.getElementById('buttonText');
+            const buttonLoading = document.getElementById('buttonLoading');
+            
+            submitButton.disabled = true;
+            buttonText.style.display = 'none';
+            buttonLoading.style.display = 'inline';
+            
+            // Имитация отправки на сервер
+            setTimeout(() => {
+                // Скрыть форму и показать сообщение об успехе
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('contactSuccess').style.display = 'block';
+                
+                // Сбросить форму
+                document.getElementById('contactForm').reset();
+                
+                // Вернуть кнопку в исходное состояние
+                submitButton.disabled = false;
+                buttonText.style.display = 'inline';
+                buttonLoading.style.display = 'none';
+                
+                // Автоматически скрыть сообщение об успехе через 10 секунд
+                setTimeout(() => {
+                    document.getElementById('contactForm').style.display = 'block';
+                    document.getElementById('contactSuccess').style.display = 'none';
+                }, 10000);
+                
+                // Логирование (в реальном приложении здесь был бы запрос на сервер)
+                console.log('Форма обратной связи отправлена:', {
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    type: document.getElementById('contactType').value,
+                    message: message,
+                    timestamp: new Date().toISOString()
+                });
+            }, 1500);
+        });
+        
+        // Автоматическое прокручивание к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

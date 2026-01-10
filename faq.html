@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Частые вопросы - Фотограф Светлана Якубашко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Цветовая палитра */
+        :root {
+            --primary-color: #8a7f8d;
+            --primary-dark: #6b5f6a;
+            --primary-light: #f5f3f5;
+            --accent-color: #d4b8c7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f7f9;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Шапка */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+        
+        .photographer-name {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-login, .btn-register {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Навигация */
+        .nav-container {
+            background-color: var(--white);
+            padding: 0 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        /* FAQ контейнер */
+        .faq-container {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        /* FAQ категории */
+        .faq-category {
+            padding: 30px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+        
+        .faq-category:last-child {
+            border-bottom: none;
+        }
+        
+        .category-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-icon {
+            color: var(--accent-color);
+            font-size: 22px;
+        }
+        
+        /* FAQ вопросы */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--accent-color);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            background-color: var(--white);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .faq-question i {
+            color: var(--primary-color);
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px 25px;
+            max-height: 1000px;
+            background-color: var(--primary-light);
+            border-top: 1px solid var(--accent-color);
+        }
+        
+        .faq-answer p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .faq-answer ul, .faq-answer ol {
+            color: var(--text-light);
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        /* Ссылки в ответах */
+        .faq-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .faq-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Поиск по FAQ */
+        .faq-search {
+            margin-bottom: 40px;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 20px 18px 50px;
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            font-size: 16px;
+            color: var(--text-dark);
+            background-color: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 184, 199, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        /* Блок "Не нашли ответ?" */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px 0 40px;
+            border: 1px solid var(--accent-color);
+        }
+        
+        .cta-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-contact:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Полезные ссылки */
+        .useful-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .link-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            border-top: 4px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .link-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .link-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .link-description {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        /* Футер */
+        .site-footer {
+            background-color: var(--white);
+            color: var(--text-light);
+            padding: 50px 30px 30px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--primary-light);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .faq-category {
+                padding: 25px 20px;
+            }
+            
+            .contact-cta {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header, .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 22px;
+            }
+            
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 15px;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 18px 20px;
+            }
+            
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .btn-login, .btn-register {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+            
+            .contact-cta {
+                padding: 30px 20px;
+            }
+            
+            .cta-title {
+                font-size: 28px;
+            }
+            
+            .cta-text {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .category-title {
+                font-size: 20px;
+            }
+            
+            .useful-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">
+            <i class="fas fa-camera logo-icon"></i>
+            <div>
+                <div class="site-name">Фотограф Светлана Якубашко</div>
+                <div class="photographer-name">Гродно, профессиональная фотосъёмка</div>
+            </div>
+        </div>
+        
+        <div class="user-actions">
+            <button class="btn-login" onclick="window.location.href='login.html'">Войти</button>
+            <button class="btn-register" onclick="window.location.href='login.html'">Регистрация</button>
+        </div>
+    </header>
+    
+    <!-- Навигационная панель -->
+    <nav class="nav-container">
+        <ul class="nav-tabs">
+            <li class="nav-tab" onclick="window.location.href='index.html'">ГЛАВНАЯ</li>
+            <li class="nav-tab" onclick="window.location.href='portfolio.html'">ПОРТФОЛИО</li>
+            <li class="nav-tab" onclick="window.location.href='services.html'">УСЛУГИ И ЦЕНЫ</li>
+            <li class="nav-tab" onclick="window.location.href='photodays.html'">ФОТОДНИ</li>
+            <li class="nav-tab active">FAQ</li>
+            <li class="nav-tab" onclick="window.location.href='contacts.html'">КОНТАКТЫ</li>
+        </ul>
+    </nav>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Заголовок -->
+        <div class="page-header">
+            <h1 class="page-title">Частые вопросы (FAQ)</h1>
+            <p class="page-subtitle">Здесь вы найдете ответы на самые популярные вопросы о фотосъемке, ценах, процессе работы и многом другом.</p>
+        </div>
+        
+        <!-- Поиск по FAQ -->
+        <div class="faq-search">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="faqSearch" class="search-input" placeholder="Поиск по вопросам...">
+            </div>
+        </div>
+        
+        <!-- FAQ контейнер -->
+        <div class="faq-container">
+            <!-- Категория: Общие вопросы -->
+            <div class="faq-category">
+                <h2 class="category-title">
+                    <i class="fas fa-question-circle category-icon"></i>
+                    Общие вопросы
+                </h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Как происходит процесс фотосъемки?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Процесс фотосъемки включает несколько этапов:</p>
+                        <ol>
+                            <li><strong>Консультация:</strong> Обсуждаем ваши пожелания, выбираем локацию, стиль и время съемки</li>
+                            <li><strong>Подготовка:</strong> Вы получаете рекомендации по одежде, аксессуарам и подготовке к съемке</li>
+                            <li><strong>Съемка:</strong> Проводим фотосессию в выбранной локации (1-3 часа в зависимости от пакета)</li>
+                            <li><strong>Обработка:</strong> Я отбираю лучшие кадры и провожу профессиональную обработку (7-14 дней)</li>
+                            <li><strong>Сдача работы:</strong> Вы получаете все обработанные фото в электронном виде через облачное хранилище</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Сколько времени занимает обработка фотографий?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Стандартный срок обработки фотографий составляет <strong>7-14 дней</strong> после съемки.</p>
+                        <p>На срок обработки влияют:</p>
+                        <ul>
+                            <li>Объем съемки (количество отснятого материала)</li>
+                            <li>Сложность обработки (ретушь, цветокоррекция)</li>
+                            <li>Загруженность в работе</li>
+                        </ul>
+                        <p>При необходимости можно заказать <strong>срочную обработку</strong> (3 дня) за дополнительную плату +30% к стоимости съемки.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Можно ли получить необработанные (RAW) фотографии?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Нет, я не передаю необработанные фотографии (RAW файлы) по нескольким причинам:</p>
+                        <ul>
+                            <li>RAW файлы — это "цифровой негатив", который требует профессиональной обработки</li>
+                            <li>Мой авторский стиль и качество работы заключаются в полном цикле от съемки до финальной обработки</li>
+                            <li>Я гарантирую качество только тех фотографий, которые обработала сама</li>
+                        </ul>
+                        <p>Вы получаете готовые фотографии в формате JPG в высоком разрешении, готовые для печати и публикации в социальных сетях.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Категория: Цены и оплата -->
+            <div class="faq-category">
+                <h2 class="category-title">
+                    <i class="fas fa-money-bill-wave category-icon"></i>
+                    Цены и оплата
+                </h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Как происходит оплата фотосессии?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Оплата происходит в два этапа:</p>
+                        <ol>
+                            <li><strong>Предоплата 30%</strong> — для бронирования даты и времени съемки. Без предоплаты дата не бронируется.</li>
+                            <li><strong>Остаток 70%</strong> — оплачивается в день съемки перед началом фотосессии.</li>
+                        </ol>
+                        <p><strong>Способы оплаты:</strong></p>
+                        <ul>
+                            <li>Наличными</li>
+                            <li>Перевод на карту (Беларусбанк, Альфа-Банк)</li>
+                            <li>Через ЕРИП</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Что входит в стоимость фотосессии?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>В стоимость любой фотосессии входит:</p>
+                        <ul>
+                            <li>Время и работа фотографа</li>
+                            <li>Работа с профессиональной техникой (камеры, объективы, световое оборудование)</li>
+                            <li>Подбор локации и помощь в создании образа</li>
+                            <li>Руководство во время съемки (помощь с позированием, созданием эмоций)</li>
+                            <li>Отбор лучших кадров</li>
+                            <li>Профессиональная обработка всех удачных фотографий</li>
+                            <li>Передача фотографий в электронном виде в полном разрешении</li>
+                        </ul>
+                        <p><strong>Не входит в стоимость:</strong> аренда студии/локации, услуги визажиста/стилиста, печать фотографий, срочная обработка.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Можно ли перенести или отменить фотосессию?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Перенос съемки:</strong></p>
+                        <ul>
+                            <li>Можно перенести съемку <strong>не менее чем за 48 часов</strong> до начала</li>
+                            <li>Предоплата сохраняется за вами</li>
+                            <li>Перенос возможен не более 2 раз</li>
+                        </ul>
+                        
+                        <p><strong>Отмена съемки:</strong></p>
+                        <ul>
+                            <li>При отмене <strong>более чем за 48 часов</strong> — предоплата возвращается полностью</li>
+                            <li>При отмене <strong>менее чем за 48 часов</strong> — предоплата не возвращается</li>
+                            <li>В случае болезни предоставляется справка от врача для возврата предоплаты</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Категория: Подготовка к съемке -->
+            <div class="faq-category">
+                <h2 class="category-title">
+                    <i class="fas fa-user-check category-icon"></i>
+                    Подготовка к съемке
+                </h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Как подготовиться к фотосессии? Что надеть?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Общие рекомендации по одежде:</strong></p>
+                        <ul>
+                            <li>Выбирайте одежду, в которой вам комфортно и которая подчеркивает ваши достоинства</li>
+                            <li>Избегайте крупных логотипов, ярких неоновых цветов и очень мелких полосок/клеток</li>
+                            <li>Подготовьте 2-3 варианта образов для разнообразия</li>
+                            <li>Учитывайте сезон и локацию съемки</li>
+                        </ul>
+                        
+                        <p><strong>Для пар/семей:</strong></p>
+                        <ul>
+                            <li>Согласуйте цветовую гамму, но избегайте полного совпадения</li>
+                            <li>Выбирайте стили, которые дополняют друг друга</li>
+                            <li>Подготовьте аксессуары (шляпы, шарфы, украшения)</li>
+                        </ul>
+                        
+                        <p>После бронирования съемки я вышлю вам подробный гайд по подготовке с конкретными рекомендациями для вашего типа съемки.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Нужен ли визажист/стилист для фотосессии?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Услуги визажиста и стилиста <strong>не обязательны</strong>, но <strong>рекомендованы</strong> для:</p>
+                        <ul>
+                            <li>Портретной съемки (особенно бьюти-портретов)</li>
+                            <li>Свадебной фотосессии</li>
+                            <li>Фотосессии для бизнес-портфолио</li>
+                            <li>Съемки в студии с профессиональным светом</li>
+                        </ul>
+                        
+                        <p><strong>Преимущества работы с визажистом:</strong></p>
+                        <ul>
+                            <li>Профессиональный макияж, который идеально смотрится на фото</li>
+                            <li>Коррекция особенностей лица для лучшего результата</li>
+                            <li>Экономия времени и уверенность в своем образе</li>
+                        </ul>
+                        
+                        <p>Я могу порекомендовать проверенных визажистов и стилистов в Гродно. Их услуги оплачиваются отдельно.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Что взять с собой на фотосессию?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Обязательный список:</strong></p>
+                        <ul>
+                            <li>Сменная одежда и обувь (если планируется несколько образов)</li>
+                            <li>Расческа/щетка для волос</li>
+                            <li>Пудра/салфетки для макияжа (особенно в жаркую погоду)</li>
+                            <li>Питьевая вода</li>
+                        </ul>
+                        
+                        <p><strong>Дополнительно (по желанию):</strong></p>
+                        <ul>
+                            <li>Любимые аксессуары (украшения, шляпы, очки)</li>
+                            <li>Для семейной съемки — любимые игрушки детей</li>
+                            <li>Для пары — предметы, символизирующие ваши отношения</li>
+                            <li>Зонт (на случай дождя для уличной съемки)</li>
+                        </ul>
+                        
+                        <p>Для съемки в студии дополнительно ничего не требуется — все необходимое оборудование уже есть.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Категория: Фотодни -->
+            <div class="faq-category">
+                <h2 class="category-title">
+                    <i class="fas fa-calendar-day category-icon"></i>
+                    Фотодни
+                </h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Что такое фотодень и чем он отличается от индивидуальной съемки?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Фотодень</strong> — это групповая тематическая фотосессия, где несколько участников (обычно 4-6 человек) снимаются в одной локации в один день.</p>
+                        
+                        <p><strong>Основные отличия от индивидуальной съемки:</strong></p>
+                        <table style="width:100%; border-collapse: collapse; margin: 15px 0;">
+                            <tr>
+                                <th style="text-align:left; padding:10px; background:var(--primary-light);">Критерий</th>
+                                <th style="text-align:left; padding:10px; background:var(--primary-light);">Фотодень</th>
+                                <th style="text-align:left; padding:10px; background:var(--primary-light);">Индивидуальная съемка</th>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">Стоимость</td>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">От 120 BYN</td>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">От 200 BYN</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">Время на участника</td>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">30-45 минут</td>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">1-3 часа</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">Количество фото</td>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">30+ обработанных</td>
+                                <td style="padding:10px; border-bottom:1px solid var(--primary-light);">50-100+ обработанных</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px;">Гибкость</td>
+                                <td style="padding:10px;">Фиксированная дата/тема</td>
+                                <td style="padding:10px;">Полная индивидуальность</td>
+                            </tr>
+                        </table>
+                        
+                        <p>Фотодни отлично подходят для тех, кто хочет получить качественные фото по более доступной цене и готов к фиксированным условиям.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Как записаться на фотодень и что потом?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Процесс записи и участия:</strong></p>
+                        <ol>
+                            <li>Выбираете подходящий фотодень на странице <a href="photodays.html" class="faq-link">"Фотодни"</a></li>
+                            <li>Заполняете форму записи онлайн</li>
+                            <li>Вносите предоплату 30% для бронирования места</li>
+                            <li>Получаете подробную инструкцию по подготовке</li>
+                            <li>В назначенный день приходите на съемку</li>
+                            <li>Через 7-10 дней получаете обработанные фотографии</li>
+                        </ol>
+                        
+                        <p><strong>Важно:</strong> количество мест на фотодень ограничено (обычно 4-6 участников), поэтому рекомендую записываться заранее.</p>
+                        
+                        <p>Следите за анонсами новых фотодней в нашем <a href="https://www.instagram.com/photoday.grodno/" target="_blank" class="faq-link">Instagram</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Полезные ссылки -->
+        <div class="useful-links">
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h3 class="link-title">Портфолио</h3>
+                <p class="link-description">Посмотрите примеры моих работ в разных жанрах фотографии</p>
+                <a href="portfolio.html" class="btn-contact" style="padding: 10px 25px;">Смотреть</a>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-money-bill"></i>
+                </div>
+                <h3 class="link-title">Цены и услуги</h3>
+                <p class="link-description">Подробная информация о стоимости всех видов фотосъемки</p>
+                <a href="services.html" class="btn-contact" style="padding: 10px 25px;">Узнать цены</a>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="link-title">Фотодни</h3>
+                <p class="link-description">Запишитесь на тематическую групповую фотосессию</p>
+                <a href="photodays.html" class="btn-contact" style="padding: 10px 25px;">Выбрать фотодень</a>
+            </div>
+        </div>
+        
+        <!-- Не нашли ответ? -->
+        <div class="contact-cta">
+            <h2 class="cta-title">Не нашли ответ на свой вопрос?</h2>
+            <p class="cta-text">Свяжитесь со мной любым удобным способом, и я с радостью отвечу на все ваши вопросы</p>
+            <button class="btn-contact" onclick="window.location.href='contacts.html'">Связаться</button>
+        </div>
+    </main>
+    
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +375 (XX) XXX-XX-XX</p>
+                <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@svetlana-photo.by</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> г. Гродно, ул. Советская, 15</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Быстрые ссылки</h4>
+                <a href="index.html">Главная</a>
+                <a href="portfolio.html">Портфолио</a>
+                <a href="services.html">Услуги и цены</a>
+                <a href="photodays.html">Фотодни</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Часы работы</h4>
+                <p>Пн-Пт: 9:00 - 20:00</p>
+                <p>Сб: 10:00 - 18:00</p>
+                <p>Вс: 11:00 - 16:00</p>
+                <p>По предварительной записи</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Социальные сети</h4>
+                <a href="https://www.instagram.com/photoday.grodno/" target="_blank"><i class="fab fa-instagram" style="margin-right: 10px;"></i> Фотодни Гродно</a>
+                <a href="#" target="_blank"><i class="fab fa-telegram" style="margin-right: 10px;"></i> Telegram</a>
+                <a href="#" target="_blank"><i class="fab fa-vk" style="margin-right: 10px;"></i> ВКонтакте</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Фотограф Светлана Якубашко. Гродно. Все права защищены.
+        </div>
+    </footer>
+    
+    <script>
+        // Обработка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const page = this.textContent.trim();
+                    
+                    switch(page) {
+                        case 'ГЛАВНАЯ':
+                            window.location.href = 'index.html';
+                            break;
+                        case 'ПОРТФОЛИО':
+                            window.location.href = 'portfolio.html';
+                            break;
+                        case 'УСЛУГИ И ЦЕНЫ':
+                            window.location.href = 'services.html';
+                            break;
+                        case 'ФОТОДНИ':
+                            window.location.href = 'photodays.html';
+                            break;
+                        case 'FAQ':
+                            // Уже на странице FAQ
+                            break;
+                        case 'КОНТАКТЫ':
+                            window.location.href = 'contacts.html';
+                            break;
+                    }
+                });
+            });
+            
+            // FAQ аккордеон
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    
+                    // Закрыть другие открытые вопросы
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== this && otherQuestion.parentElement.classList.contains('active')) {
+                            otherQuestion.parentElement.classList.remove('active');
+                        }
+                    });
+                    
+                    // Открыть/закрыть текущий вопрос
+                    faqItem.classList.toggle('active');
+                });
+            });
+            
+            // Поиск по FAQ
+            const searchInput = document.getElementById('faqSearch');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqCategories = document.querySelectorAll('.faq-category');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm.length === 0) {
+                    // Показать все вопросы и категории
+                    faqItems.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    faqCategories.forEach(category => {
+                        category.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                let hasVisibleItems = false;
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        hasVisibleItems = true;
+                        
+                        // Открыть найденный вопрос
+                        item.classList.add('active');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Скрыть категории без видимых вопросов
+                faqCategories.forEach(category => {
+                    const categoryItems = category.querySelectorAll('.faq-item');
+                    let hasVisibleInCategory = false;
+                    
+                    categoryItems.forEach(item => {
+                        if (item.style.display !== 'none') {
+                            hasVisibleInCategory = true;
+                        }
+                    });
+                    
+                    category.style.display = hasVisibleInCategory ? 'block' : 'none';
+                });
+                
+                // Показать сообщение, если ничего не найдено
+                if (!hasVisibleItems) {
+                    // Можно добавить сообщение "Ничего не найдено"
+                }
+            });
+            
+            // Открыть первый вопрос в каждой категории по умолчанию
+            document.querySelectorAll('.faq-category').forEach(category => {
+                const firstQuestion = category.querySelector('.faq-item');
+                if (firstQuestion) {
+                    firstQuestion.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

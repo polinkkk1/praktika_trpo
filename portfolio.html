@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Фотограф Светлана Якубашко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Цветовая палитра: светлые, спокойные тона */
+        :root {
+            --primary-color: #8a7f8d;
+            --primary-dark: #6b5f6a;
+            --primary-light: #f5f3f5;
+            --accent-color: #d4b8c7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f7f9;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Шапка сайта */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+        
+        .photographer-name {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+        
+        /* Навигационная панель */
+        .nav-container {
+            background-color: var(--white);
+            padding: 0 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-login, .btn-register {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Основной контент */
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        
+        /* Заголовок портфолио */
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .portfolio-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .portfolio-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Фильтр категорий */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background-color: var(--white);
+            color: var(--text-dark);
+            border: 1px solid var(--primary-light);
+            border-radius: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Галерея */
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 350px;
+            background-color: #eee;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 3px 15px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 25px 20px 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-item-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-item-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .portfolio-item-category {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Подпись к фотографии */
+        .portfolio-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.6);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-caption {
+            opacity: 1;
+        }
+        
+        /* Модальное окно для просмотра фото */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 50px;
+            border-radius: 5px;
+        }
+        
+        .modal-info {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-description {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Статистика */
+        .portfolio-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 60px 0;
+            padding: 40px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+        
+        /* Призыв к действию */
+        .portfolio-cta {
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            padding: 80px 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .cta-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 15px 35px;
+            border-radius: 4px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Футер */
+        .site-footer {
+            background-color: var(--white);
+            color: var(--text-light);
+            padding: 50px 30px 30px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--primary-light);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .portfolio-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .portfolio-cta {
+                padding: 60px 40px;
+            }
+            
+            .portfolio-title {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header, .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            
+            .portfolio-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .portfolio-item {
+                height: 300px;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 22px;
+            }
+            
+            .portfolio-cta {
+                padding: 40px 30px;
+            }
+            
+            .cta-title {
+                font-size: 28px;
+            }
+            
+            .cta-text {
+                font-size: 16px;
+            }
+            
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .btn-login, .btn-register {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+            
+            .portfolio-stats {
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 15px 10px;
+            }
+            
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .portfolio-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-title {
+                font-size: 32px;
+            }
+            
+            .portfolio-subtitle {
+                font-size: 16px;
+            }
+            
+            .category-filter {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .portfolio-item {
+                height: 280px;
+            }
+            
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .portfolio-cta {
+                padding: 30px 20px;
+            }
+            
+            .cta-title {
+                font-size: 24px;
+            }
+            
+            .cta-text {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">
+            <i class="fas fa-camera logo-icon"></i>
+            <div>
+                <div class="site-name">Фотограф Светлана Якубашко</div>
+                <div class="photographer-name">Профессиональная фотосъёмка</div>
+            </div>
+        </div>
+        
+        <div class="user-actions">
+            <button class="btn-login" onclick="window.location.href='login.html'">Войти</button>
+            <button class="btn-register" onclick="window.location.href='register.html'">Регистрация</button>
+        </div>
+    </header>
+    
+    <!-- Навигационная панель -->
+    <nav class="nav-container">
+        <ul class="nav-tabs">
+            <li class="nav-tab" onclick="window.location.href='index.html'">ГЛАВНАЯ</li>
+            <li class="nav-tab active">ПОРТФОЛИО</li>
+            <li class="nav-tab" onclick="window.location.href='services.html'">УСЛУГИ И ЦЕНЫ</li>
+            <li class="nav-tab" onclick="window.location.href='photodays.html'">ФОТОДНИ</li>
+            <li class="nav-tab" onclick="window.location.href='faq.html'">FAQ</li>
+            <li class="nav-tab" onclick="window.location.href='contacts.html'">КОНТАКТЫ</li>
+        </ul>
+    </nav>
+    
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Заголовок портфолио -->
+        <div class="portfolio-header">
+            <h1 class="portfolio-title">Мое портфолио</h1>
+            <p class="portfolio-subtitle">Здесь собраны лучшие работы из разных жанров фотографии. Каждая фотография — это уникальная история, запечатленная в момент времени.</p>
+        </div>
+        
+        <!-- Фильтр категорий -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">Все работы</button>
+            <button class="category-btn" data-category="wedding">Свадьбы</button>
+            <button class="category-btn" data-category="family">Семейные фотосессии</button>
+            <button class="category-btn" data-category="portrait">Портреты</button>
+            <button class="category-btn" data-category="event">Мероприятия</button>
+            <button class="category-btn" data-category="photoday">Фотодни</button>
+        </div>
+        
+        <!-- Галерея фотографий -->
+        <div class="portfolio-gallery">
+           
+            <!-- Семейные фотосессии -->
+            <div class="portfolio-item" data-category="family" onclick="openModal('family1', 'Семейная фотосессия', 'Семья Ивановых, фотосессия в студии, весна 2024')">
+                <img src="https://images.unsplash.com/photo-1541557435984-1c79685a082b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Семейная фотография">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Семья Ивановых</div>
+                    <div class="portfolio-item-category">Семейная фотосессия</div>
+                </div>
+                <div class="portfolio-caption">Студийная семейная фотосессия</div>
+            </div>
+            
+            <!-- Портреты -->
+            <div class="portfolio-item" data-category="portrait" onclick="openModal('portrait1', 'Женский портрет', 'Портретная съемка в естественном свете, осень 2023')">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Портрет">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Анна</div>
+                    <div class="portfolio-item-category">Женский портрет</div>
+                </div>
+                <div class="portfolio-caption">Портретная съемка в естественном свете</div>
+            </div>
+            
+            <!-- Мероприятия -->
+            <div class="portfolio-item" data-category="event" onclick="openModal('event1', 'Корпоративное мероприятие', 'Годовщина компании, банкетный зал, декабрь 2023')">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Корпоративное мероприятие">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Годовщина компании</div>
+                    <div class="portfolio-item-category">Корпоративное мероприятие</div>
+                </div>
+                <div class="portfolio-caption">Корпоративное мероприятие в банкетном зале</div>
+            </div>
+            
+            <!-- Фотодни -->
+            <div class="portfolio-item" data-category="photoday" onclick="openModal('photoday1', 'Весенний фотодень', 'Тематический фотодень "Весеннее пробуждение", апрель 2024')">
+                <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Фотодень">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Весенний фотодень</div>
+                    <div class="portfolio-item-category">Тематическая фотосессия</div>
+                </div>
+                <div class="portfolio-caption">Тематический фотодень "Весеннее пробуждение"</div>
+            </div>
+            
+            <!-- Свадьбы -->
+            <div class="portfolio-item" data-category="wedding" onclick="openModal('wedding2', 'Зимняя свадьба', 'Дмитрий и Екатерина, загородный ресторан, январь 2024')">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Зимняя свадьба">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Дмитрий и Екатерина</div>
+                    <div class="portfolio-item-category">Зимняя свадьба</div>
+                </div>
+                <div class="portfolio-caption">Зимняя свадьба в загородном ресторане</div>
+            </div>
+            
+            <!-- Семейные фотосессии -->
+            <div class="portfolio-item" data-category="family" onclick="openModal('family2', 'Семья на природе', 'Семья Петровых, пикник в лесу, лето 2023')">
+                <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Семья на природе">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Семья Петровых</div>
+                    <div class="portfolio-item-category">Семейная фотосессия на природе</div>
+                </div>
+                <div class="portfolio-caption">Семейный пикник в лесу</div>
+            </div>
+            
+            <!-- Портреты -->
+            <div class="portfolio-item" data-category="portrait" onclick="openModal('portrait2', 'Мужской портрет', 'Деловой портрет для LinkedIn, студийная съемка')">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мужской портрет">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Максим</div>
+                    <div class="portfolio-item-category">Деловой портрет</div>
+                </div>
+                <div class="portfolio-caption">Деловой портрет для LinkedIn</div>
+            </div>
+            
+            <!-- Мероприятия -->
+            <div class="portfolio-item" data-category="event" onclick="openModal('event2', 'День рождения', 'Юбилей 50 лет, ресторан, октябрь 2023')">
+                <img src="https://images.unsplash.com/photo-1519677100203-5f5a1c56b7b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="День рождения">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Юбилей 50 лет</div>
+                    <div class="portfolio-item-category">День рождения</div>
+                </div>
+                <div class="portfolio-caption">Юбилейное торжество в ресторане</div>
+            </div>
+            
+            <!-- Фотодни -->
+            <div class="portfolio-item" data-category="photoday" onclick="openModal('photoday2', 'Осенний фотодень', 'Тема "Золотая осень", парк, октябрь 2023')">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Осенний фотодень">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Осенний фотодень</div>
+                    <div class="portfolio-item-category">Тема "Золотая осень"</div>
+                </div>
+                <div class="portfolio-caption">Тематический фотодень "Золотая осень" в парке</div>
+            </div>
+            
+            <!-- Свадьбы -->
+            <div class="portfolio-item" data-category="wedding" onclick="openModal('wedding3', 'Свадьба на море', 'Сергей и Ольга, крымское побережье, август 2023')">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Свадьба на море">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">Сергей и Ольга</div>
+                    <div class="portfolio-item-category">Свадьба на море</div>
+                </div>
+                <div class="portfolio-caption">Свадебная церемония на крымском побережье</div>
+            </div>
+            
+            <!-- Портреты -->
+            <div class="portfolio-item" data-category="portrait" onclick="openModal('portrait3', 'Детский портрет', 'Фотосессия для детского портфолио, возраст 5 лет')">
+                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Детский портрет">
+                <div class="portfolio-item-overlay">
+                    <div class="portfolio-item-title">София</div>
+                    <div class="portfolio-item-category">Детский портрет</div>
+                </div>
+                <div class="portfolio-caption">Детская фотосессия для портфолио</div>
+            </div>
+        </div>
+        
+        <!-- Статистика -->
+        <div class="portfolio-stats">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Проектов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Лет опыта</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Довольных клиентов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Фотодней</div>
+            </div>
+        </div>
+        
+        <!-- Призыв к действию -->
+        <div class="portfolio-cta">
+            <h2 class="cta-title">Хотите такие же красивые фотографии?</h2>
+            <p class="cta-text">Запишитесь на фотосессию прямо сейчас и получите консультацию по выбору локации, стиля и времени съемки.</p>
+            <button class="btn-primary" onclick="window.location.href='contacts.html'">Записаться на съемку</button>
+        </div>
+    </main>
+    
+    <!-- Модальное окно для просмотра фото -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-info">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +375 (XX) XXX-XX-XX</p>
+                <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@svetlana-photo.ru</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Гродно </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Быстрые ссылки</h4>
+                <a href="index.html">Главная</a>
+                <a href="portfolio.html">Портфолио</a>
+                <a href="services.html">Услуги и цены</a>
+                <a href="photodays.html">Фотодни</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Услуги</h4>
+                <a href="#">Свадебная фотография</a>
+                <a href="#">Семейные фотосессии</a>
+                <a href="#">Портретная съемка</a>
+                <a href="#">Фотосъемка мероприятий</a>
+                <a href="#">Организация фотодней</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Социальные сети</h4>
+                <a href="https://www.instagram.com/photoday.grodno?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram" style="margin-right: 10px;"></i> Instagram</a>
+                <a href="#" target="_blank"><i class="fab fa-vk" style="margin-right: 10px;"></i> ВКонтакте</a>
+                <a href="#" target="_blank"><i class="fab fa-telegram" style="margin-right: 10px;"></i> Telegram</a>
+                <a href="#" target="_blank"><i class="fab fa-facebook" style="margin-right: 10px;"></i> Facebook</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Фотограф Светлана Якубашко. Все права защищены.
+        </div>
+    </footer>
+    
+    <script>
+        // Обработка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Удаляем класс active у всех вкладок
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    // Добавляем класс active текущей вкладке
+                    this.classList.add('active');
+                    
+                    const page = this.textContent.trim();
+                    
+                    // Навигация по страницам
+                    switch(page) {
+                        case 'ГЛАВНАЯ':
+                            window.location.href = 'index.html';
+                            break;
+                        case 'ПОРТФОЛИО':
+                            // Уже на странице портфолио
+                            break;
+                        case 'УСЛУГИ И ЦЕНЫ':
+                            window.location.href = 'services.html';
+                            break;
+                        case 'ФОТОДНИ':
+                            window.location.href = 'photodays.html';
+                            break;
+                        case 'FAQ':
+                            window.location.href = 'faq.html';
+                            break;
+                        case 'КОНТАКТЫ':
+                            window.location.href = 'contacts.html';
+                            break;
+                    }
+                });
+            });
+            
+            // Фильтрация по категориям
+            const filterButtons = document.querySelectorAll('.category-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Удаляем класс active у всех кнопок фильтра
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем класс active текущей кнопке
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Показываем/скрываем элементы в зависимости от категории
+                    portfolioItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        
+        // Функции для модального окна
+        function openModal(imageId, title, description) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            
+            // Находим элемент с соответствующим data-атрибутом
+            const imageElement = document.querySelector(`.portfolio-item[onclick*="${imageId}"] img`);
+            
+            if (imageElement) {
+                modalImage.src = imageElement.src;
+                modalImage.alt = imageElement.alt;
+            }
+            
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // Закрытие модального окна при клике вне изображения
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+        
+        // Закрытие модального окна при нажатии клавиши Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

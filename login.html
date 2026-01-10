@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Светлана Якубашко</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Цветовая палитра: светлые, спокойные тона */
+        :root {
+            --primary-color: #8a7f8d;
+            --primary-dark: #6b5f6a;
+            --primary-light: #f5f3f5;
+            --accent-color: #d4b8c7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f7f9;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Шапка сайта */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .site-name {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+        
+        .photographer-name {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+        
+        /* Навигационная панель */
+        .nav-container {
+            background-color: var(--white);
+            padding: 0 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Основной контент - авторизация */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 40px 20px;
+        }
+        
+        .auth-wrapper {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            min-height: 600px;
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Левая часть - изображение */
+        .auth-image {
+            flex: 1;
+            background: linear-gradient(rgba(138, 127, 141, 0.8), rgba(138, 127, 141, 0.8)), 
+                        url('https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            color: white;
+        }
+        
+        .auth-image h2 {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .auth-image p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* Правая часть - формы */
+        .auth-forms {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Переключатель форм */
+        .form-switcher {
+            display: flex;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+        
+        .form-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .form-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .form-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Формы */
+        .form-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+        
+        /* Поля формы */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 184, 199, 0.2);
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        .show-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 16px;
+        }
+        
+        /* Сообщения об ошибках */
+        .error-message {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            color: var(--success-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        /* Чекбокс */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .checkbox-input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+        
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .checkbox-label a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Кнопки */
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 127, 141, 0.3);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        /* Разделитель */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--text-light);
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: var(--primary-light);
+        }
+        
+        .divider span {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+        
+        /* Социальные кнопки */
+        .social-auth {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-social {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            background-color: white;
+            color: var(--text-dark);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-social:hover {
+            background-color: var(--background-light);
+        }
+        
+        .btn-social.facebook {
+            color: #1877F2;
+        }
+        
+        .btn-social.google {
+            color: #DB4437;
+        }
+        
+        .btn-social.vk {
+            color: #4C75A3;
+        }
+        
+        /* Ссылки */
+        .auth-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .auth-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 15px;
+        }
+        
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Футер */
+        .site-footer {
+            background-color: var(--white);
+            color: var(--text-light);
+            padding: 30px;
+            border-top: 1px solid var(--primary-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .copyright {
+            font-size: 14px;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .auth-wrapper {
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .auth-image {
+                padding: 30px;
+                min-height: 200px;
+            }
+            
+            .auth-image h2 {
+                font-size: 28px;
+            }
+            
+            .auth-forms {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header, .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 22px;
+            }
+            
+            .auth-container {
+                padding: 20px;
+            }
+            
+            .auth-forms {
+                padding: 30px 20px;
+            }
+            
+            .form-title {
+                font-size: 24px;
+            }
+            
+            .form-tab {
+                font-size: 16px;
+                padding: 12px;
+            }
+            
+            .social-auth {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .footer-links a {
+                margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .auth-image {
+                display: none;
+            }
+            
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">
+            <i class="fas fa-camera logo-icon"></i>
+            <div>
+                <div class="site-name">Фотограф Светлана Якубашко</div>
+                <div class="photographer-name">Профессиональная фотосъёмка</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Навигационная панель -->
+    <nav class="nav-container">
+        <ul class="nav-tabs">
+            <li class="nav-tab" onclick="window.location.href='index.html'">ГЛАВНАЯ</li>
+            <li class="nav-tab" onclick="window.location.href='portfolio.html'">ПОРТФОЛИО</li>
+            <li class="nav-tab" onclick="window.location.href='services.html'">УСЛУГИ И ЦЕНЫ</li>
+            <li class="nav-tab" onclick="window.location.href='photodays.html'">ФОТОДНИ</li>
+            <li class="nav-tab" onclick="window.location.href='faq.html'">FAQ</li>
+            <li class="nav-tab" onclick="window.location.href='contacts.html'">КОНТАКТЫ</li>
+        </ul>
+    </nav>
+    
+    <!-- Основной контент - авторизация -->
+    <main class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Левая часть - изображение и приветствие -->
+            <div class="auth-image">
+                <h2>Добро пожаловать!</h2>
+                <p>Зарегистрируйтесь на сайте, чтобы записываться на фотосессии, получать уведомления о новых фотоднях и специальных предложениях.</p>
+                <p style="margin-top: 20px;">Уже есть аккаунт? Войдите, чтобы продолжить.</p>
+            </div>
+            
+            <!-- Правая часть - формы -->
+            <div class="auth-forms">
+                <!-- Переключатель форм -->
+                <div class="form-switcher">
+                    <div class="form-tab active" data-form="login">Вход</div>
+                    <div class="form-tab" data-form="register">Регистрация</div>
+                </div>
+                
+                <!-- Форма входа -->
+                <div id="login-form" class="form-container active">
+                    <h2 class="form-title">Вход в аккаунт</h2>
+                    
+                    <!-- Социальные кнопки -->
+                    <div class="social-auth">
+                        <button class="btn-social google">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button class="btn-social vk">
+                            <i class="fab fa-vk"></i> ВКонтакте
+                        </button>
+                    </div>
+                    
+                    <div class="divider">
+                        <span>или через email</span>
+                    </div>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label class="form-label" for="login-email">Email</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="login-email" class="form-input" placeholder="Ваш email" required>
+                            </div>
+                            <div id="login-email-error" class="error-message">Введите корректный email</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="login-password">Пароль</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="login-password" class="form-input" placeholder="Ваш пароль" required>
+                                <button type="button" class="show-password" data-target="login-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="login-password-error" class="error-message">Введите пароль</div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="remember-me" class="checkbox-input">
+                            <label for="remember-me" class="checkbox-label">Запомнить меня</label>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Войти</button>
+                        
+                        <div class="auth-links">
+                            <a href="#" id="forgot-password">Забыли пароль?</a>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Форма регистрации -->
+                <div id="register-form" class="form-container">
+                    <h2 class="form-title">Создание аккаунта</h2>
+                    
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label class="form-label" for="register-name">Имя</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" id="register-name" class="form-input" placeholder="Ваше имя" required>
+                            </div>
+                            <div id="register-name-error" class="error-message">Введите ваше имя</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-email">Email</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="register-email" class="form-input" placeholder="Ваш email" required>
+                            </div>
+                            <div id="register-email-error" class="error-message">Введите корректный email</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-phone">Телефон</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone input-icon"></i>
+                                <input type="tel" id="register-phone" class="form-input" placeholder="+375 (XX) XXX-XX-XX" required>
+                            </div>
+                            <div id="register-phone-error" class="error-message">Введите корректный номер телефона</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-password">Пароль</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="register-password" class="form-input" placeholder="Придумайте пароль" required>
+                                <button type="button" class="show-password" data-target="register-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="register-password-error" class="error-message">Пароль должен содержать минимум 8 символов</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-confirm-password">Подтверждение пароля</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="register-confirm-password" class="form-input" placeholder="Повторите пароль" required>
+                                <button type="button" class="show-password" data-target="register-confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="register-confirm-error" class="error-message">Пароли не совпадают</div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agree-terms" class="checkbox-input" required>
+                            <label for="agree-terms" class="checkbox-label">
+                                Я соглашаюсь с <a href="#">условиями использования</a> и <a href="#">политикой конфиденциальности</a>
+                            </label>
+                        </div>
+                        <div id="agree-terms-error" class="error-message">Необходимо согласие с условиями</div>
+                        
+                        <button type="submit" class="btn-submit">Зарегистрироваться</button>
+                        
+                        <div class="auth-links">
+                            <p>Уже есть аккаунт? <a href="#" id="go-to-login">Войти</a></p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Форма восстановления пароля -->
+                <div id="forgot-form" class="form-container">
+                    <h2 class="form-title">Восстановление пароля</h2>
+                    <p style="color: var(--text-light); margin-bottom: 25px;">Введите email, указанный при регистрации. Мы вышлем вам инструкцию по восстановлению пароля.</p>
+                    
+                    <form id="forgotForm">
+                        <div class="form-group">
+                            <label class="form-label" for="forgot-email">Email</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="forgot-email" class="form-input" placeholder="Ваш email" required>
+                            </div>
+                            <div id="forgot-email-error" class="error-message">Введите корректный email</div>
+                            <div id="forgot-email-success" class="success-message">Инструкция отправлена на ваш email</div>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Отправить инструкцию</button>
+                        
+                        <div class="auth-links">
+                            <a href="#" id="back-to-login">Вернуться к входу</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Футер -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="copyright">
+                © 2025 Фотограф Светлана Якубашко. Все права защищены.
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Главная</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="#">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Обработка навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const page = this.textContent.trim();
+                    
+                    // Навигация по страницам
+                    switch(page) {
+                        case 'ГЛАВНАЯ':
+                            window.location.href = 'index.html';
+                            break;
+                        case 'ПОРТФОЛИО':
+                            window.location.href = 'portfolio.html';
+                            break;
+                        case 'УСЛУГИ И ЦЕНЫ':
+                            window.location.href = 'services.html';
+                            break;
+                        case 'ФОТОДНИ':
+                            window.location.href = 'photodays.html';
+                            break;
+                        case 'FAQ':
+                            window.location.href = 'faq.html';
+                            break;
+                        case 'КОНТАКТЫ':
+                            window.location.href = 'contacts.html';
+                            break;
+                    }
+                });
+            });
+            
+            // Переключение между формами
+            const formTabs = document.querySelectorAll('.form-tab');
+            const formContainers = document.querySelectorAll('.form-container');
+            
+            formTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Удаляем класс active у всех вкладок
+                    formTabs.forEach(t => t.classList.remove('active'));
+                    // Добавляем класс active текущей вкладке
+                    this.classList.add('active');
+                    
+                    const formId = this.getAttribute('data-form');
+                    
+                    // Скрываем все формы
+                    formContainers.forEach(container => {
+                        container.classList.remove('active');
+                    });
+                    
+                    // Показываем выбранную форму
+                    document.getElementById(formId + '-form').classList.add('active');
+                });
+            });
+            
+            // Показать/скрыть пароль
+            const showPasswordButtons = document.querySelectorAll('.show-password');
+            showPasswordButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+                    
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+            
+            // Переход к форме входа
+            document.getElementById('go-to-login').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('.form-tab[data-form="login"]').click();
+            });
+            
+            // Переход к форме восстановления пароля
+            document.getElementById('forgot-password').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Скрываем все формы
+                formContainers.forEach(container => {
+                    container.classList.remove('active');
+                });
+                
+                // Показываем форму восстановления пароля
+                document.getElementById('forgot-form').classList.add('active');
+                
+                // Обновляем активную вкладку
+                formTabs.forEach(t => t.classList.remove('active'));
+            });
+            
+            // Возврат к форме входа
+            document.getElementById('back-to-login').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('.form-tab[data-form="login"]').click();
+            });
+            
+            // Валидация формы входа
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value.trim();
+                let isValid = true;
+                
+                // Сброс сообщений об ошибках
+                document.getElementById('login-email-error').style.display = 'none';
+                document.getElementById('login-password-error').style.display = 'none';
+                
+                // Валидация email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('login-email-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Валидация пароля
+                if (!password) {
+                    document.getElementById('login-password-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Здесь должен быть запрос на сервер для авторизации
+                    alert('Успешный вход! В реальном приложении здесь будет перенаправление на личный кабинет.');
+                    // window.location.href = 'profile.html';
+                }
+            });
+            
+            // Валидация формы регистрации
+            const registerForm = document.getElementById('registerForm');
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('register-name').value.trim();
+                const email = document.getElementById('register-email').value.trim();
+                const phone = document.getElementById('register-phone').value.trim();
+                const password = document.getElementById('register-password').value.trim();
+                const confirmPassword = document.getElementById('register-confirm-password').value.trim();
+                const agreeTerms = document.getElementById('agree-terms').checked;
+                
+                let isValid = true;
+                
+                // Сброс сообщений об ошибках
+                document.getElementById('register-name-error').style.display = 'none';
+                document.getElementById('register-email-error').style.display = 'none';
+                document.getElementById('register-phone-error').style.display = 'none';
+                document.getElementById('register-password-error').style.display = 'none';
+                document.getElementById('register-confirm-error').style.display = 'none';
+                document.getElementById('agree-terms-error').style.display = 'none';
+                
+                // Валидация имени
+                if (!name) {
+                    document.getElementById('register-name-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Валидация email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('register-email-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Валидация телефона
+                const phoneRegex = /^(\+375)[\s\-]?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+                if (!phone || !phoneRegex.test(phone.replace(/\s/g, ''))) {
+                    document.getElementById('register-phone-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Валидация пароля
+                if (!password || password.length < 8) {
+                    document.getElementById('register-password-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Подтверждение пароля
+                if (password !== confirmPassword) {
+                    document.getElementById('register-confirm-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Согласие с условиями
+                if (!agreeTerms) {
+                    document.getElementById('agree-terms-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Здесь должен быть запрос на сервер для регистрации
+                    alert('Регистрация успешна! На ваш email отправлено письмо с подтверждением.');
+                    document.querySelector('.form-tab[data-form="login"]').click();
+                }
+            });
+            
+            // Валидация формы восстановления пароля
+            const forgotForm = document.getElementById('forgotForm');
+            forgotForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('forgot-email').value.trim();
+                let isValid = true;
+                
+                // Сброс сообщений
+                document.getElementById('forgot-email-error').style.display = 'none';
+                document.getElementById('forgot-email-success').style.display = 'none';
+                
+                // Валидация email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('forgot-email-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Здесь должен быть запрос на сервер для восстановления пароля
+                    document.getElementById('forgot-email-success').style.display = 'block';
+                    
+                    // Через 3 секунды возвращаем к форме входа
+                    setTimeout(() => {
+                        document.querySelector('.form-tab[data-form="login"]').click();
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
